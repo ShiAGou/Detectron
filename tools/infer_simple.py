@@ -24,6 +24,7 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+from recursive_dir import search
 from collections import defaultdict
 import argparse
 import cv2  # NOQA (Must import before importing caffe2 due to bug in cv2)
@@ -101,11 +102,13 @@ def main(args):
     dummy_coco_dataset = dummy_datasets.get_coco_dataset()
 
     if os.path.isdir(args.im_or_folder):
-        im_list = glob.iglob(args.im_or_folder + '/*.' + args.image_ext)
+        # im_list = glob.iglob(args.im_or_folder + '/*.' + args.image_ext)
+        im_list = search(args.im_or_folder, args.image_ext)
     else:
         im_list = [args.im_or_folder]
 
-    for i, im_name in enumerate(im_list):
+    #for i, im_name in enumerate(im_list):
+    for i, im_name in im_list:
         out_name = os.path.join(
             args.output_dir, '{}'.format(os.path.basename(im_name) + '.pdf')
         )
