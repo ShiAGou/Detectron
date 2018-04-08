@@ -107,8 +107,8 @@ def main(args):
     else:
         im_list = [args.im_or_folder]
 
-    #for i, im_name in enumerate(im_list):
-    for i, im_name in im_list:
+    for i, im_name in enumerate(im_list):
+    #for i, im_name in im_list:
         #out_name = os.path.join(
          #   args.output_dir, '{}'.format(os.path.basename(im_name) + '.pdf')
         #)
