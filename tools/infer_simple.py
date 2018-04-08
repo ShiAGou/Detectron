@@ -113,6 +113,9 @@ def main(args):
          #   args.output_dir, '{}'.format(os.path.basename(im_name) + '.pdf')
         #)
         out_name = im_name.replace(args.im_or_folder, args.output_dir)
+        par_path = os.path.dirname(out_name)
+        if not os.path.exists(par_path):
+            os.makedirs(par_path)
         logger.info('Processing {} -> {}'.format(im_name, out_name))
         im = cv2.imread(im_name)
         timers = defaultdict(Timer)
@@ -133,7 +136,7 @@ def main(args):
         vis_utils.vis_one_image(
             im[:, :, ::-1],  # BGR -> RGB for visualization
             im_name,
-            args.output_dir,
+            par_path,
             cls_boxes,
             cls_segms,
             cls_keyps,
@@ -141,7 +144,8 @@ def main(args):
             box_alpha=0.3,
             show_class=True,
             thresh=0.7,
-            kp_thresh=2
+            kp_thresh=2,
+            ext='png'
         )
 
 
