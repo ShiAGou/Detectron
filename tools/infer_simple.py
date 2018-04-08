@@ -109,9 +109,10 @@ def main(args):
 
     #for i, im_name in enumerate(im_list):
     for i, im_name in im_list:
-        out_name = os.path.join(
-            args.output_dir, '{}'.format(os.path.basename(im_name) + '.pdf')
-        )
+        #out_name = os.path.join(
+         #   args.output_dir, '{}'.format(os.path.basename(im_name) + '.pdf')
+        #)
+        out_name = im_name.replace(args.im_or_folder, args.output_dir)
         logger.info('Processing {} -> {}'.format(im_name, out_name))
         im = cv2.imread(im_name)
         timers = defaultdict(Timer)
