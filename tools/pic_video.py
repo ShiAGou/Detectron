@@ -18,17 +18,18 @@ def imgs2video(img_path, destination, fps=24):
     video.release()
 
 
-def video2imgs(v_path, destinationm, num=0):
+def video2imgs(v_path, destination, low=0, high=0):
     v_name = os.path.basename(v_path)
     video = cv2.VideoCapture(v_path)
     rval = video.isOpened()
-    if (rval && num <= 0)
-        num = sys.maxints
+    if (rval and high <= 0)
+        high = sys.maxints
     cnt = 0
-    while(rval && num >0)
+    while(rval and cnt<high)
         rval, frame = video.read()
         cnt = cnt+1
-        num = num-1
+        if (cnt < low):
+            continue
         img_name = v_name+'_'+str(cnt).zfill(10)+'.jpg'
         print('saving '+img_name +'...')
         cv2.imwrite(os.path.join(destination, img_name), frame)
@@ -48,7 +49,7 @@ if __name__ == '__main__':
     '''
     sp = '/home/shiwenlei/Downloads/nihao.mp4'
     dest = '/home/shiwenlei/experiment/Data/Detectron/nihao'
-    video2imgs(sp, destination, num=7200)
+    video2imgs(sp, destination, low=3600, high=7200)
 
 
 
