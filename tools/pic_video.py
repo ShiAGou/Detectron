@@ -20,6 +20,7 @@ def imgs2video(img_path, destination, fps=24):
 
 def video2imgs(v_path, destination, low=0, high=0):
     v_name = os.path.basename(v_path)
+    v_name,_ = os.path.splitext(v_name);  
     video = cv2.VideoCapture(v_path)
     rval = video.isOpened()
     if (rval and high <= 0)
